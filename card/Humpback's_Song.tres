@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="CardData" format=3 uid="uid://dcpo1x12kkea4"]
+
+[ext_resource type="Script" uid="uid://c7carddata01" path="res://script/card/card_data.gd" id="1_enbdv"]
+[ext_resource type="Texture2D" uid="uid://d2j1wr2yhnu3s" path="res://texture/cards/HumpbacksSong.png" id="2_evmch"]
+
+[resource]
+script = ExtResource("1_enbdv")
+id = "Humpback's_Song"
+card_name = "座头鲸的歌声"
+description = "demo"
+effect_type = "Tetris"
+trigger_condition = &"Tetris"
+piece_type = &"z"
+texture = ExtResource("2_evmch")
+metadata/_custom_type_script = "uid://c7carddata01"

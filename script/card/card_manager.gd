@@ -6,6 +6,8 @@ const Triggers := preload("res://script/triggers.gd")
 
 const TETRIS_CARD: CardData = preload("res://card/tetris.tres")
 const MOUNTAIN_TOP: CardData = preload("uid://bisaqnwcln5ys")
+const HUMPBACK_S_SONG = preload("uid://dcpo1x12kkea4")
+
 
 signal inventory_changed
 signal gold_changed
@@ -60,6 +62,7 @@ func _get_card_pool() -> Array:
 	var list: Array = []
 	list.append(TETRIS_CARD)
 	list.append(MOUNTAIN_TOP)
+	list.append(HUMPBACK_S_SONG)
 	return list
 
 
