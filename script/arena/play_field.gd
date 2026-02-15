@@ -168,7 +168,6 @@ func add_blocks(tetromino: Tetromino, coordinates: Vector2i) -> void:
 	queue_redraw()
 	
 	await clear(tetromino, coordinates)
-	the_height_of_the_block = get_blocks_height_range()
 	queue_redraw()
 
 
@@ -410,9 +409,11 @@ func spring_pulse(t: float, intensity: float = 0.5, frequency: float = 10.0) -> 
 
 ## 计算当前地图中有方块的最高层到最低层的层数
 ## 返回值：有方块的层数，如果没有方块则返回0
-func get_blocks_height_range() -> int:
+func get_blocks_height_range() -> Array:
 	var highest_layer = -1  # 最高层索引（0-22），-1表示没有方块
 	var lowest_layer = V_CAPACITY  # 最低层索引（0-22），V_CAPACITY表示没有方块
+	var return_col : int
+	var return_row : int
 	
 	# 遍历每一行，检查是否有方块
 	for row in range(V_CAPACITY):
@@ -423,15 +424,18 @@ func get_blocks_height_range() -> int:
 					highest_layer = row
 				if row < lowest_layer:
 					lowest_layer = row
+				
+				return_col = col
+				return_row = row
 				# 一行中只要有一个方块就可以了，不需要检查其他列
 				break
 	
 	# 检查是否有方块
 	if highest_layer == -1 or lowest_layer == V_CAPACITY:
-		return 0
+		return [0,0,0] # 没有方块，层数为0
 	
 	# 计算层数（包含两端）
-	return highest_layer - lowest_layer + 1
+	return [highest_layer - lowest_layer + 1, return_col + 1, return_row + 1]
 
 ## 获取所有最高的列的索引 返回Array
 func get_blocks_height_col() -> Array:
