@@ -138,7 +138,8 @@ func trigger(trigger_condition: StringName, ctx: Dictionary) -> Dictionary:
 			"plus_5_basic_score":
 				ctx.basic = int(ctx.basic) + 5
 			"detect_the_height_of_the_block_plus_the_basic_score":
-				ctx.basic = int(ctx.basic) + PlayField.the_height_of_the_block
+				ctx.basic = int(ctx.basic) + play_field.get_blocks_height_range()
+				#play_field._spawn_MountainTop_floating_score()
 			"Humpback's_Song_effect":
 				var arr = play_field.get_blocks_height_col() as Array
 				play_field.settle_col_block(arr)

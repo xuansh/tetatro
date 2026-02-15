@@ -364,6 +364,22 @@ func _spawn_floating_score(col: int, row: int, text_content: String):
 	# 添加到特效容器中
 	_effect_container.add_child(label)
 
+func _spawn_MountainTop_floating_score(col : int, row : int, text_content : String):
+	var label = Label.new()
+	label.text = text_content
+	label.add_theme_font_override("font", spawn_text_font)
+	label.add_theme_font_size_override("font_size", 20)
+	label.modulate = Color.RED
+	
+	var spawn_pos = Vector2(col * CELL_WIDTH, (row + 1) * -CELL_WIDTH)
+	label.position = spawn_pos
+	
+	# 加载脚本处理自身的向上飘动和自动销毁
+	label.set_script(load("res://FloatingText.gd"))
+	
+	# 添加到特效容器中
+	_effect_container.add_child(label)
+
 #endregion
 
 func playfield_shaking():
