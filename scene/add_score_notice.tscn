@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://c3ou8mrjwu3hf"]
+
+[ext_resource type="Script" uid="uid://fpohcg8b13nn" path="res://script/arena/add_score_notice.gd" id="1_ipwow"]
+
+[node name="Control" type="Label" unique_id=402680961]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ipwow")

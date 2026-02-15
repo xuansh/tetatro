@@ -1,0 +1,7 @@
+# Godot 项目忽略规则
+.import/
+export.cfg
+export_presets.cfg
+*.godot
+Thumbs.db  # Windows 系统文件
+Addon/

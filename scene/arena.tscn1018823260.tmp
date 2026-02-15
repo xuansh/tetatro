@@ -1,0 +1,398 @@
+[gd_scene format=3 uid="uid://dsgf4c4ub16al"]
+
+[ext_resource type="Shader" uid="uid://babhnwcnirxnt" path="res://shaders/VHS_and_CRT_monitor_effect.gdshader" id="1_c1ra1"]
+[ext_resource type="Script" uid="uid://wykmpg714f4n" path="res://script/arena/arena.gd" id="1_yqa3n"]
+[ext_resource type="PackedScene" uid="uid://bb258e3tlyvxr" path="res://scene/play_field.tscn" id="2_ggwo0"]
+[ext_resource type="PackedScene" uid="uid://c8mpctxjui4yx" path="res://scene/active_piece.tscn" id="3_6c1eg"]
+[ext_resource type="AudioStream" uid="uid://df8tp183rwrkq" path="res://Audios/Electricity.wav" id="3_kxnuh"]
+[ext_resource type="PackedScene" uid="uid://ckwtd3i258fuo" path="res://scene/ghost_piece.tscn" id="4_b0buf"]
+[ext_resource type="Script" uid="uid://k22oo4s3fpyh" path="res://script/arena/bgm_player.gd" id="4_q4yd7"]
+[ext_resource type="PackedScene" uid="uid://kiqr27emrd7d" path="res://scene/next_queue.tscn" id="5_6clsc"]
+[ext_resource type="Script" uid="uid://dpvgfaiwddipj" path="res://script/audio/sound_effect_player.gd" id="5_q4yd7"]
+[ext_resource type="PackedScene" uid="uid://cdwe0hwrnp70o" path="res://scene/hold_piece.tscn" id="6_cn125"]
+[ext_resource type="Texture2D" uid="uid://b4vtl34ekm4b3" path="res://texture/arena/background.png" id="7_l4rpe"]
+[ext_resource type="PackedScene" uid="uid://shopscene01" path="res://scene/shop.tscn" id="7_shop"]
+[ext_resource type="Texture2D" uid="uid://lq8j13vwtnkx" path="res://texture/arena/scorebar.png" id="8_l4rpe"]
+[ext_resource type="PackedScene" uid="uid://rewardpick01" path="res://scene/reward_pick.tscn" id="9_reward_pick"]
+[ext_resource type="PackedScene" uid="uid://312ycpm6nor3" path="res://scene/inventory_field.tscn" id="10_inventory_field"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kxnuh"]
+shader = ExtResource("1_c1ra1")
+shader_parameter/overlay = false
+shader_parameter/scanlines_opacity = 0.4
+shader_parameter/scanlines_width = 0.25
+shader_parameter/grille_opacity = 0.3
+shader_parameter/resolution = Vector2(640, 480)
+shader_parameter/pixelate = true
+shader_parameter/roll = true
+shader_parameter/roll_speed = 8.0
+shader_parameter/roll_size = 15.0
+shader_parameter/roll_variation = 1.8
+shader_parameter/distort_intensity = 0.05
+shader_parameter/noise_opacity = 0.4
+shader_parameter/noise_speed = 5.0
+shader_parameter/static_noise_intensity = 0.06
+shader_parameter/aberration = 0.03
+shader_parameter/brightness = 1.02
+shader_parameter/discolor = true
+shader_parameter/warp_amount = 1.0
+shader_parameter/clip_warp = false
+shader_parameter/vignette_intensity = 0.4
+shader_parameter/vignette_opacity = 0.5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_hover"]
+bg_color = Color(0.25, 0.12, 0.35, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 0.85, 0.4, 0.95)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn"]
+bg_color = Color(0.18, 0.08, 0.28, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.4, 0.9, 1, 0.85)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
+bg_color = Color(0.22352941, 0.24313726, 0.27450982, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.35, 0.85, 1, 0.9)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="Theme" id="Theme_c6rhw"]
+Button/colors/font_color = Color(0.85, 0.9, 1, 1)
+Button/colors/font_hover_color = Color(1, 0.9, 0.5, 1)
+Button/styles/hover = SubResource("StyleBoxFlat_btn_hover")
+Button/styles/normal = SubResource("StyleBoxFlat_btn")
+Button/styles/pressed = SubResource("StyleBoxFlat_btn_hover")
+Label/colors/font_color = Color(0.9, 0.92, 1, 1)
+Label/colors/font_shadow_color = Color(0.05, 0.02, 0.1, 0.8)
+Panel/styles/panel = SubResource("StyleBoxFlat_panel")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_c1ra1"]
+shader = ExtResource("1_c1ra1")
+shader_parameter/overlay = true
+shader_parameter/scanlines_opacity = 0.010000000475
+shader_parameter/scanlines_width = 0.010000000475
+shader_parameter/grille_opacity = 0.0130000006175
+shader_parameter/resolution = Vector2(640, 480)
+shader_parameter/pixelate = false
+shader_parameter/roll = false
+shader_parameter/roll_speed = 0.0
+shader_parameter/roll_size = 0.0
+shader_parameter/roll_variation = 1.8
+shader_parameter/distort_intensity = 0.05
+shader_parameter/noise_opacity = 0.4
+shader_parameter/noise_speed = 5.0
+shader_parameter/static_noise_intensity = 0.030000001425
+shader_parameter/aberration = 0.00500004773750006
+shader_parameter/brightness = 1.1
+shader_parameter/discolor = true
+shader_parameter/warp_amount = 0.050000002375
+shader_parameter/clip_warp = false
+shader_parameter/vignette_intensity = 0.5
+shader_parameter/vignette_opacity = 0.3090000146775
+
+[node name="Arena" type="Node2D" unique_id=1596088948]
+process_mode = 3
+material = SubResource("ShaderMaterial_kxnuh")
+script = ExtResource("1_yqa3n")
+
+[node name="Audio" type="Node" parent="." unique_id=371769641]
+
+[node name="BGMPlayer" type="AudioStreamPlayer" parent="Audio" unique_id=769589360]
+process_mode = 3
+stream = ExtResource("3_kxnuh")
+volume_db = -7.091
+autoplay = true
+script = ExtResource("4_q4yd7")
+
+[node name="SoundEffectPlayer" type="AudioStreamPlayer" parent="Audio" unique_id=2087562408]
+script = ExtResource("5_q4yd7")
+
+[node name="PlayField" parent="." unique_id=2108471607 instance=ExtResource("2_ggwo0")]
+position = Vector2(440, 615)
+
+[node name="GhostPiece" parent="PlayField" unique_id=1065310325 node_paths=PackedStringArray("_playfield", "_entity") instance=ExtResource("4_b0buf")]
+_playfield = NodePath("..")
+_entity = NodePath("../ActivePiece")
+
+[node name="ActivePiece" parent="PlayField" unique_id=1686805498 node_paths=PackedStringArray("_playfield", "next_queue", "hold_piece") instance=ExtResource("3_6c1eg")]
+_playfield = NodePath("..")
+next_queue = NodePath("../../NextQueue")
+hold_piece = NodePath("../../HoldPiece")
+
+[node name="NextQueue" parent="." unique_id=1199789606 instance=ExtResource("5_6clsc")]
+position = Vector2(906, 450)
+scale = Vector2(0.7, 0.7)
+
+[node name="HoldPiece" parent="." unique_id=1080517907 instance=ExtResource("6_cn125")]
+visible = false
+position = Vector2(150, 150)
+scale = Vector2(0.7, 0.7)
+
+[node name="BackgroundLayer" type="CanvasLayer" parent="." unique_id=69455303]
+layer = -1
+
+[node name="TextureRect" type="TextureRect" parent="BackgroundLayer" unique_id=1876542433]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("7_l4rpe")
+metadata/_edit_lock_ = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=978096538]
+process_mode = 3
+
+[node name="UIRoot" type="Control" parent="CanvasLayer" unique_id=1912629901]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_c6rhw")
+metadata/_edit_lock_ = true
+
+[node name="ScoreBg" type="TextureRect" parent="CanvasLayer/UIRoot" unique_id=402497452]
+layout_mode = 1
+offset_left = 32.0
+offset_top = 30.0
+offset_right = 252.0
+offset_bottom = 170.0
+texture = ExtResource("8_l4rpe")
+
+[node name="ShopBtn" type="Button" parent="CanvasLayer/UIRoot" unique_id=1478686020]
+visible = false
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -99.0
+offset_top = 13.0
+offset_right = -9.0
+offset_bottom = 48.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 22
+text = "商店"
+
+[node name="Shop" parent="CanvasLayer/UIRoot" unique_id=1585988658 instance=ExtResource("7_shop")]
+visible = false
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -330.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = 190.0
+grow_horizontal = 0
+
+[node name="RewardPick" parent="CanvasLayer/UIRoot" unique_id=374637316 instance=ExtResource("9_reward_pick")]
+visible = false
+layout_mode = 0
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 313.0
+offset_top = 153.0
+offset_right = 833.0
+offset_bottom = 513.0
+
+[node name="InventoryPanel" type="PanelContainer" parent="CanvasLayer/UIRoot" unique_id=1715207142]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 36.0
+offset_top = -275.0
+offset_right = 276.0
+offset_bottom = -35.0
+grow_vertical = 0
+mouse_filter = 2
+
+[node name="InventoryField" parent="CanvasLayer/UIRoot/InventoryPanel" unique_id=969971043 instance=ExtResource("10_inventory_field")]
+
+[node name="Container" type="Control" parent="CanvasLayer/UIRoot" unique_id=1796984536]
+layout_mode = 1
+anchors_preset = 0
+offset_left = 95.0
+offset_top = 108.0
+offset_right = 284.0
+offset_bottom = 177.0
+
+[node name="basicScore" type="Label" parent="CanvasLayer/UIRoot/Container" unique_id=182832952]
+layout_mode = 0
+offset_left = 30.0
+offset_right = 94.0
+offset_bottom = 69.0
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 0.85, 0.4, 1)
+theme_override_font_sizes/font_size = 50
+text = "0"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="multiplierScore" type="Label" parent="CanvasLayer/UIRoot/Container" unique_id=1451143391]
+layout_mode = 0
+offset_left = 135.0
+offset_right = 197.0
+offset_bottom = 69.0
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 0.85, 0.4, 1)
+theme_override_font_sizes/font_size = 50
+text = "0"
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="CanvasLayer/UIRoot/Container" unique_id=2122310298]
+layout_mode = 0
+offset_left = 100.0
+offset_right = 129.0
+offset_bottom = 69.0
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.6, 0.9, 1, 1)
+theme_override_font_sizes/font_size = 50
+text = "*"
+vertical_alignment = 1
+
+[node name="basicScoreLabel" type="Label" parent="CanvasLayer/UIRoot/Container" unique_id=431675582]
+layout_mode = 0
+offset_left = 140.0
+offset_top = 54.0
+offset_right = 180.0
+offset_bottom = 82.0
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 20
+text = "倍率"
+vertical_alignment = 1
+
+[node name="multiplierScoreLabel" type="Label" parent="CanvasLayer/UIRoot/Container" unique_id=2036557719]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.20634921
+anchor_top = 0.36231884
+anchor_right = -0.20634921
+anchor_bottom = 0.36231884
+offset_left = 69.0
+offset_top = 29.0
+offset_right = 129.0
+offset_bottom = 57.0
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 20
+text = "基础值"
+vertical_alignment = 1
+
+[node name="得分" type="Label" parent="CanvasLayer/UIRoot/Container" unique_id=2027749459]
+layout_mode = 0
+offset_left = 12.0
+offset_top = -36.0
+offset_right = 102.0
+offset_bottom = 6.0
+theme_override_colors/font_color = Color(0.80559295, 0.8055936, 0.8055931, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/outline_size = 1
+theme_override_font_sizes/font_size = 30
+text = "得分："
+
+[node name="totalScore" type="Label" parent="CanvasLayer/UIRoot/Container" unique_id=1297718728]
+layout_mode = 0
+offset_left = 106.0
+offset_top = -49.0
+offset_right = 135.0
+offset_bottom = 20.0
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 0.88, 0.45, 1)
+theme_override_font_sizes/font_size = 50
+text = "0"
+vertical_alignment = 1
+
+[node name="Panel" type="Panel" parent="CanvasLayer/UIRoot" unique_id=1953501562]
+visible = false
+custom_minimum_size = Vector2(600, 400)
+layout_mode = 0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -150.0
+offset_right = 200.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/UIRoot/Panel" unique_id=1359636523]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 8
+
+[node name="Label" type="Label" parent="CanvasLayer/UIRoot/Panel/VBoxContainer" unique_id=2060008469]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "游戏结束"
+
+[node name="Reason" type="Label" parent="CanvasLayer/UIRoot/Panel/VBoxContainer" unique_id=223979458]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 40
+text = "超出容器"
+
+[node name="Button" type="Button" parent="CanvasLayer/UIRoot/Panel/VBoxContainer" unique_id=238391590]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "重来"
+
+[node name="Button" type="Button" parent="CanvasLayer/UIRoot" unique_id=459774367]
+visible = false
+layout_mode = 0
+offset_left = 1014.0
+offset_top = 395.0
+offset_right = 1118.0
+offset_bottom = 445.0
+theme_override_font_sizes/font_size = 30
+text = "  重 来  "
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=1759148879]
+z_index = 4096
+material = SubResource("ShaderMaterial_c1ra1")
+offset_right = 1152.0
+offset_bottom = 648.0
+mouse_filter = 2
+metadata/_edit_lock_ = true
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1814319487]
+position = Vector2(576, 324)
+
+[connection signal="finished" from="Audio/BGMPlayer" to="Audio/BGMPlayer" method="_on_finished"]
+[connection signal="pressed" from="CanvasLayer/UIRoot/ShopBtn" to="." method="_on_shop_btn_pressed"]
+[connection signal="pressed" from="CanvasLayer/UIRoot/Panel/VBoxContainer/Button" to="." method="restart"]
+[connection signal="pressed" from="CanvasLayer/UIRoot/Button" to="." method="restart"]

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="CardData" format=3 uid="uid://cbqakio7di0yj"]
+
+[ext_resource type="Script" uid="uid://c7carddata01" path="res://script/card/card_data.gd" id="1_card_data"]
+[ext_resource type="Texture2D" uid="uid://br2vcpm6ijt53" path="res://texture/cards/tetris.png" id="2_dnjix"]
+
+[resource]
+script = ExtResource("1_card_data")
+id = "tetris"
+card_name = "特趣思"
+description = "+5基础分"
+price = 30
+effect_type = "plus_5_basic_score"
+trigger_condition = &"line_cleared"
+piece_type = &"l"
+texture = ExtResource("2_dnjix")

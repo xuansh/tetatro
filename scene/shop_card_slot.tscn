@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://bbf2vqbh8csro"]
+
+[ext_resource type="Script" uid="uid://dox1n6h2n3buv" path="res://script/shop/shop_card_slot.gd" id="1_slot"]
+[ext_resource type="Shader" uid="uid://ca3wmmocp3ens" path="res://shaders/2d-perspective.gdshader" id="2_kxgya"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_s3vdj"]
+shader = ExtResource("2_kxgya")
+shader_parameter/fov = 35.000001615
+shader_parameter/cull_back = true
+shader_parameter/y_rot = 0.0
+shader_parameter/x_rot = 0.0
+shader_parameter/inset = 0.0
+
+[node name="ShopCardSlot" type="PanelContainer" unique_id=1029863561]
+custom_minimum_size = Vector2(140, 0)
+script = ExtResource("1_slot")
+
+[node name="Margin" type="MarginContainer" parent="." unique_id=970397360]
+layout_mode = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="VBox" type="VBoxContainer" parent="Margin" unique_id=671305261]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="CardImage" type="TextureRect" parent="Margin/VBox" unique_id=1672831556]
+material = SubResource("ShaderMaterial_s3vdj")
+custom_minimum_size = Vector2(120, 160)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="NameLabel" type="Label" parent="Margin/VBox" unique_id=286082066]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "卡牌名"
+
+[node name="DescLabel" type="Label" parent="Margin/VBox" unique_id=287904977]
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "描述"
+autowrap_mode = 2
+
+[node name="PriceLabel" type="Label" parent="Margin/VBox" unique_id=698712958]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "0 金币"
+
+[node name="BuyBtn" type="Button" parent="Margin/VBox" unique_id=1674651848]
+layout_mode = 2
+text = "购买"
+
+[connection signal="mouse_entered" from="Margin/VBox/CardImage" to="." method="_on_card_image_mouse_entered"]
+[connection signal="mouse_exited" from="Margin/VBox/CardImage" to="." method="_on_card_image_mouse_exited"]

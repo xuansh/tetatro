@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="ColorUpgrade" format=3 uid="uid://by60gw838uumx"]
+
+[ext_resource type="Script" uid="uid://c1ejcwvnq4lwc" path="res://script/tetromino/Color_Upgrade.gd" id="1_w18nc"]
+
+[resource]
+script = ExtResource("1_w18nc")
+target_color = "green"
+base_score_add = 1
+metadata/_custom_type_script = "uid://c1ejcwvnq4lwc"

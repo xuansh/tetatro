@@ -1,0 +1,242 @@
+[gd_scene format=3 uid="uid://dsgf4c4ub16al"]
+
+[ext_resource type="Script" uid="uid://wykmpg714f4n" path="res://scene/arena.gd" id="1_yqa3n"]
+[ext_resource type="PackedScene" uid="uid://bb258e3tlyvxr" path="res://scene/play_field.tscn" id="2_ggwo0"]
+[ext_resource type="PackedScene" uid="uid://c8mpctxjui4yx" path="res://scene/active_piece.tscn" id="3_6c1eg"]
+[ext_resource type="PackedScene" uid="uid://ckwtd3i258fuo" path="res://scene/ghost_piece.tscn" id="4_b0buf"]
+[ext_resource type="PackedScene" uid="uid://kiqr27emrd7d" path="res://scene/next_queue.tscn" id="5_6clsc"]
+[ext_resource type="PackedScene" uid="uid://cdwe0hwrnp70o" path="res://scene/hold_piece.tscn" id="6_cn125"]
+[ext_resource type="PackedScene" path="res://scene/shop.tscn" id="7_shop"]
+[ext_resource type="Theme" uid="uid://nb5es3gamat5" path="res://theme/arena_balatro.tres" id="8_theme"]
+
+[node name="Arena" type="Node2D" unique_id=1596088948]
+script = ExtResource("1_yqa3n")
+
+[node name="PlayField" parent="." unique_id=2108471607 instance=ExtResource("2_ggwo0")]
+position = Vector2(282, 601)
+
+[node name="GhostPiece" parent="PlayField" unique_id=1065310325 node_paths=PackedStringArray("_playfield", "_entity") instance=ExtResource("4_b0buf")]
+_playfield = NodePath("..")
+_entity = NodePath("../ActivePiece")
+
+[node name="ActivePiece" parent="PlayField" unique_id=1686805498 node_paths=PackedStringArray("_playfield", "next_queue", "hold_piece") instance=ExtResource("3_6c1eg")]
+_playfield = NodePath("..")
+next_queue = NodePath("../../NextQueue")
+hold_piece = NodePath("../../HoldPiece")
+
+[node name="NextQueue" parent="." unique_id=1199789606 instance=ExtResource("5_6clsc")]
+position = Vector2(599, 249.99998)
+scale = Vector2(0.7, 0.7)
+
+[node name="HoldPiece" parent="." unique_id=1080517907 instance=ExtResource("6_cn125")]
+position = Vector2(150, 150)
+scale = Vector2(0.7, 0.7)
+
+[node name="BackgroundLayer" type="CanvasLayer" parent="." unique_id=69455303]
+layer = -1
+
+[node name="ColorRect" type="ColorRect" parent="BackgroundLayer" unique_id=179009932]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.07, 0.02, 0.12, 1)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=978096538]
+process_mode = 3
+
+[node name="UIRoot" type="Control" parent="CanvasLayer" unique_id=1912629901]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("8_theme")
+
+[node name="ScoreBg" type="Panel" parent="CanvasLayer/UIRoot" unique_id=2081696486]
+layout_mode = 1
+offset_left = 593.0
+offset_top = 397.0
+offset_right = 782.0
+offset_bottom = 538.0
+
+[node name="ShopBtn" type="Button" parent="CanvasLayer/UIRoot" unique_id=1478686020]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -100.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = 44.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 22
+text = "商店"
+
+[node name="Shop" parent="CanvasLayer/UIRoot" unique_id=1585988658 instance=ExtResource("7_shop")]
+visible = false
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -330.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = 190.0
+grow_horizontal = 0
+
+[node name="Container" type="Control" parent="CanvasLayer/UIRoot" unique_id=1796984536]
+layout_mode = 1
+anchors_preset = 0
+offset_left = 593.0
+offset_top = 446.0
+offset_right = 782.0
+offset_bottom = 515.0
+
+[node name="basicScore" type="Label" parent="CanvasLayer/UIRoot/Container" unique_id=182832952]
+layout_mode = 0
+offset_left = 30.0
+offset_right = 94.0
+offset_bottom = 69.0
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 0.85, 0.4, 1)
+theme_override_font_sizes/font_size = 50
+text = "0"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="multiplierScore" type="Label" parent="CanvasLayer/UIRoot/Container" unique_id=1451143391]
+layout_mode = 0
+offset_left = 135.0
+offset_right = 197.0
+offset_bottom = 69.0
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 0.85, 0.4, 1)
+theme_override_font_sizes/font_size = 50
+text = "0"
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="CanvasLayer/UIRoot/Container" unique_id=2122310298]
+layout_mode = 0
+offset_left = 100.0
+offset_right = 129.0
+offset_bottom = 69.0
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.6, 0.9, 1, 1)
+theme_override_font_sizes/font_size = 50
+text = "*"
+vertical_alignment = 1
+
+[node name="basicScoreLabel" type="Label" parent="CanvasLayer/UIRoot/Container" unique_id=431675582]
+layout_mode = 0
+offset_left = 140.0
+offset_top = 54.0
+offset_right = 180.0
+offset_bottom = 82.0
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 20
+text = "倍率"
+vertical_alignment = 1
+
+[node name="multiplierScoreLabel" type="Label" parent="CanvasLayer/UIRoot/Container" unique_id=2036557719]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.20634921
+anchor_top = 0.36231884
+anchor_right = -0.20634921
+anchor_bottom = 0.36231884
+offset_left = 69.0
+offset_top = 29.0
+offset_right = 129.0
+offset_bottom = 57.0
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 20
+text = "基础值"
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="CanvasLayer/UIRoot/Container" unique_id=2027749459]
+layout_mode = 0
+offset_left = 12.0
+offset_top = -36.0
+offset_right = 102.0
+offset_bottom = 6.0
+theme_override_colors/font_color = Color(0.75, 0.85, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.05, 0.02, 0.12, 0.9)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/outline_size = 1
+theme_override_font_sizes/font_size = 30
+text = "得分："
+
+[node name="totalScore" type="Label" parent="CanvasLayer/UIRoot/Container" unique_id=1297718728]
+layout_mode = 0
+offset_left = 106.0
+offset_top = -49.0
+offset_right = 135.0
+offset_bottom = 20.0
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 0.88, 0.45, 1)
+theme_override_font_sizes/font_size = 50
+text = "0"
+vertical_alignment = 1
+
+[node name="Panel" type="Panel" parent="CanvasLayer/UIRoot" unique_id=1953501562]
+visible = false
+custom_minimum_size = Vector2(600, 400)
+layout_mode = 0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -150.0
+offset_right = 200.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/UIRoot/Panel" unique_id=1359636523]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 8
+
+[node name="Label" type="Label" parent="CanvasLayer/UIRoot/Panel/VBoxContainer" unique_id=2060008469]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "游戏结束"
+
+[node name="Reason" type="Label" parent="CanvasLayer/UIRoot/Panel/VBoxContainer" unique_id=223979458]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 40
+text = "超出容器"
+
+[node name="Button" type="Button" parent="CanvasLayer/UIRoot/Panel/VBoxContainer" unique_id=238391590]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "重来"
+
+[node name="Button" type="Button" parent="CanvasLayer/UIRoot" unique_id=459774367]
+layout_mode = 0
+offset_left = 810.0
+offset_top = 452.0
+offset_right = 878.0
+offset_bottom = 502.0
+theme_override_font_sizes/font_size = 30
+text = "  重 来  "
+
+[connection signal="pressed" from="CanvasLayer/UIRoot/ShopBtn" to="." method="_on_shop_btn_pressed"]
+[connection signal="pressed" from="CanvasLayer/UIRoot/Panel/VBoxContainer/Button" to="." method="restart"]
+[connection signal="pressed" from="CanvasLayer/UIRoot/Button" to="." method="restart"]

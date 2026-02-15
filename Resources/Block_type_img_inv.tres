@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="BlockTypeImgSet" format=3 uid="uid://b8ieo2ojdhf64"]
+
+[ext_resource type="Script" uid="uid://de71nu1ppdwf" path="res://script/blockTypeImg.gd" id="1_ewmy6"]
+[ext_resource type="Script" uid="uid://gurb7mvnf6rp" path="res://script/blockTypeImgSet.gd" id="4_e4y3g"]
+
+[resource]
+script = ExtResource("4_e4y3g")
+metadata/_custom_type_script = "uid://gurb7mvnf6rp"

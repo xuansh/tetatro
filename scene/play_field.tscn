@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://bb258e3tlyvxr"]
+
+[ext_resource type="Script" uid="uid://b48kv4kn7643r" path="res://script/arena/play_field.gd" id="1_m4st0"]
+[ext_resource type="Texture2D" uid="uid://dy1vxv3p7tv6g" path="res://texture/arena/tetatro.png" id="2_oo60d"]
+
+[node name="PlayField" type="Node2D" unique_id=1272551588]
+script = ExtResource("1_m4st0")
+
+[node name="Background" type="Sprite2D" parent="." unique_id=1442839903]
+z_index = -1
+position = Vector2(125, -290)
+texture = ExtResource("2_oo60d")

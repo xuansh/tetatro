@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="CardData" format=3 uid="uid://bisaqnwcln5ys"]
+
+[ext_resource type="Script" uid="uid://c7carddata01" path="res://script/card/card_data.gd" id="1_r5p6b"]
+[ext_resource type="Texture2D" uid="uid://pesink0q4m3d" path="res://texture/cards/mountainTop.png" id="2_74s36"]
+
+[resource]
+script = ExtResource("1_r5p6b")
+id = "MountainTop"
+card_name = "山顶"
+description = "检测方块高度x +x基础分"
+effect_type = "detect_the_height_of_the_block_plus_the_basic_score"
+trigger_condition = &"before_clear"
+piece_type = &"I"
+texture = ExtResource("2_74s36")
+metadata/_custom_type_script = "uid://c7carddata01"

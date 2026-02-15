@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://c8mpctxjui4yx"]
+
+[ext_resource type="Script" uid="uid://jc5e8ikvay8b" path="res://script/arena/active_piece.gd" id="1_6xop3"]
+
+[node name="ActivePiece" type="Node2D" unique_id=1477323343]
+script = ExtResource("1_6xop3")
+
+[node name="FallTimer" type="Timer" parent="." unique_id=2093482719]
+
+[node name="MoveTimer" type="Timer" parent="." unique_id=608718983]
+
+[node name="LockDelayTimer" type="Timer" parent="." unique_id=86314847]

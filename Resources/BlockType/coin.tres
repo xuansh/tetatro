@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="BlockImg" format=3 uid="uid://cq2trd2siqsx"]
+
+[ext_resource type="Script" uid="uid://de71nu1ppdwf" path="res://script/blockTypeImg.gd" id="1_1oohh"]
+
+[resource]
+script = ExtResource("1_1oohh")
+blockTypeName = &"coin"
+red_img = "uid://bjaoce75wekn1"
+blue_img = "uid://ck1s1ymj4mejt"
+yellow_img = "uid://divm7qkb3126u"
+green_img = "uid://0o4okq7t8b24"
+metadata/_custom_type_script = "uid://de71nu1ppdwf"
