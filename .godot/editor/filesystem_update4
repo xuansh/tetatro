@@ -1,0 +1,7 @@
+res://scene/arena.tscn
+res://addons/net.yarvis.pixel_pen/resources/default_theme.tres
+res://shaders/2d-perspective.gdshader
+res://shaders/VHS_and_CRT_monitor_effect.gdshader
+res://shaders/glow.gdshader
+res://script/card/card_manager.gd
+res://script/arena/play_field.gd
